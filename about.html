@@ -1,0 +1,85 @@
+---
+layout: page
+title: About
+---
+<p>WIP</p>
+<script src="csv2json.js"></script>
+<script src="assets/languages.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+  integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg=="
+  crossorigin="anonymous"></script>
+
+<canvas id="myChart" width="400" height="400" aria-label="Hello ARIA World" role="img" style="background: rgb(2,0,36);
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(251,0,0,1) 0%, rgba(0,212,255,1) 100%);">
+  <p>Your browser does not support the canvas element</p>
+</canvas>
+
+<script>
+  const all = CSVJSON.csv2json(langs, { parseNumbers: true });
+  var period = [];
+  var datasets = [];
+  for (i = 0; i < all.length; i++) {
+    var language = all[i];
+    var data = []
+    for (var prop in language) {
+      if (Object.prototype.hasOwnProperty.call(language, prop)) {
+        if (prop != 'Language') {
+          var value = language[prop]
+          data.push(value == "" ? undefined : value)
+          period.push(prop)
+        }
+      }
+    }
+    var li = new Image()
+    li.src = `assets/${language["Language"]}.png`;
+    li.width = 40
+    li.height = 40
+
+    datasets.push({
+      data: data,
+      label: language["Language"],
+      fill: false,
+      pointRadius: 20,
+      pointHoverRadius: 20,
+      pointHitRadius: 20,
+      pointStyle: li,
+      borderColor: 'rgb(255, 255, 255)'
+    })
+
+  }
+
+  var ctx = document.getElementById('myChart');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: datasets,
+      labels: [...new Set(period)],
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          id: 'left-y-axis',
+          type: 'linear',
+          position: 'left',
+          display: false,
+          ticks: {
+            max: 100,
+            min: 0,
+          }
+        }
+        ],
+        xAxes: [{
+          position: 'top',
+          ticks: {
+            fontColor: 'white',
+            fontSize: 16
+          }
+        }]
+      },
+      legend: {
+        display: false
+      }
+    }
+  });
+</script>

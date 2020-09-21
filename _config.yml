@@ -28,5 +28,6 @@ plugins:
   - jekyll-sitemap
 
 # Custom variables
-owner : "RafaelAdao"
+owner : "rafael.adao"
 year : "2020"
+google_analytics : UA-178456335-1
