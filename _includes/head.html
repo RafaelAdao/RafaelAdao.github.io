@@ -9,5 +9,7 @@
   
   <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="ATOM Feed" /> {% seo %}
   <script src="https://apis.google.com/js/api.js"></script>
-  <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/f999fd52-3ffe-41be-916c-db876f5647a3-loader.js" ></script>
+  {% if jekyll.environment == "production" %}
+    <script type="text/javascript" async src="https://d335luupugsy2.cloudfront.net/js/loader-scripts/f999fd52-3ffe-41be-916c-db876f5647a3-loader.js" ></script>
+  {% endif %}
 </head>
