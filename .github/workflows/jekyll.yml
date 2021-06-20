@@ -17,5 +17,5 @@ jobs:
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        -e YOUTUBE_API_ENV=${{ secrets.YOUTUBE_API_ENV }}
+        -e YOUTUBE_API_ENV=${{ secrets.YOUTUBE_API_ENV }} \
         jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
