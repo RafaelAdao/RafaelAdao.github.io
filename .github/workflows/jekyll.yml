@@ -17,7 +17,6 @@ jobs:
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        -e YOUTUBE_API_ENV="um teste" \
-        jekyll/builder:latest /bin/bash -c "gem install jekyll-environment-variables && chmod -R 777 /srv/jekyll && jekyll build --future"
+        jekyll/builder:latest /bin/bash -c "gem install jekyll-environment-variables && chmod -R 777 /srv/jekyll && YOUTUBE_API_ENV="${{ secrets.YOUTUBE_API_ENV }}" jekyll build --future"
       env:
         YOUTUBE_API_ENV: ${{ secrets.YOUTUBE_API_ENV }}
