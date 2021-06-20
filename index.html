@@ -2,6 +2,7 @@
 layout: default
 ---
 <ul>
+  <p>{{ site.env.YOUTUBE_API_ENV }}</p>
     {% for post in paginator.posts %}
       <li>
           <h2><a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">{{ post.title }}</a></h2>
